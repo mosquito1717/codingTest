@@ -1,0 +1,21 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int solution(vector<int> citations) {
+	int answer = 0;
+
+	// algorithm 라이브러리에 있는 sort 함수; 오름차순 정렬이 기본
+	// greater<자료형>()을 쓰면 내림차순 정렬
+	// 앞의 두 인자는 정렬 범위를 의미함
+	sort(citations.begin(), citations.end(), greater<int>());
+
+	for (int i = 0; i < citations.size(); i++) {
+		if (citations[i] >= (i + 1)) answer++;
+	}
+	// 정렬된 sitations에서 앞의 index는 뒤보다 1은 큼
+	// 따라서 citations[i]>=(i+1)이면 citations[i보다 작]>=(i+1)임
+	// 따라서 부등호가 성립할 때까지만 반복문 돌리고 answer++하는 것임
+	return answer;
+}
