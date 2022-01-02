@@ -1,0 +1,51 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool solution(vector<string> phone_book) {
+	bool answer = true;
+	
+  // 방법1
+  // 시간 초과가 뜬다. 반복문을 줄여보자.
+  //vector<string>::iterator it;
+	//vector<string>::iterator it2;
+	//for (it = phone_book.begin(); it != phone_book.end(); it++) {
+	//	for (it2 = it + 1; it2 != phone_book.end(); it2++) {
+	//		if ((*it).length() <= (*it2).length()) {
+	//			string temp = (*it2).substr(0, (*it).length());
+	//			if ((*it) == temp) {
+	//				answer = false;
+	//			}
+	//		}
+	//	}
+	//}
+  
+  // 방법2
+  // 여전히 테스트를 통과하지 못했다. 
+  vector<string>::iterator it;
+	vector<string>::iterator it2;
+	it = phone_book.begin();
+	it2 = phone_book.begin() + 1;
+	while (1) {
+		if (it == phone_book.end() - 1) { break; }
+		else if ((*it).length() <= (*it2).length() && (*it) == (*it2).substr(0, (*it).length())) {
+			answer = false;
+			break;
+		}
+		else {
+			if (it2 == phone_book.end() - 1) {
+				it++;
+				it2 = it + 1;
+			}
+			else {
+				it2++;
+			}
+		}
+	}
+	return answer;
+}
+int main() {
+	vector<string> pb = { "119", "97674223", "1195524421" };
+	cout << boolalpha << solution(pb);
+	return 0;
+}
