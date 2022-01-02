@@ -21,7 +21,7 @@ bool solution(vector<string> phone_book) {
 	//}
   
   // 방법2
-  // 여전히 테스트를 통과하지 못했다. 
+  // 여전히 테스트를 통과하지 못했다. -> 8,9,19,3,4 실패
   vector<string>::iterator it;
 	vector<string>::iterator it2;
 	it = phone_book.begin();
