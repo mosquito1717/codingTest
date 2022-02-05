@@ -1,0 +1,17 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int numCount;
+	cin >> numCount;
+	int* num = new int[numCount];
+	for (int i = 0; i < numCount; i++) {
+		cin >> num[i];
+	}
+	// 정렬. 첫번째 인자: 배열 포인터, 두번째 인자: 배열 포인터 + 배열 크기(-1까지 정렬)
+	sort(num, num + numCount); // 오름차순 정렬
+	cout << num[0] << " " << num[numCount - 1];
+	delete[] num;
+	return 0;
+}
