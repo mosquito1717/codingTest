@@ -1,0 +1,49 @@
+#include <sstream>
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+
+string solution(string number, int k) {
+    int number_length = number.length();
+    // converting string to int vector
+    // _number: integer type vector of numbers
+    std::stringstream iss(number);
+    int _number;
+    std::vector<int> myNumber;
+    while(iss >> _number)
+        myNumber.push_back(_number);
+    int i = 0; // integer that indicates iterator's index 
+    auto iterator = myNumber.begin(); // pointer
+    int deleted_count = 0;
+    while (deleted_count <= k && i < number_length - 1) {
+        if (myNumber[i] < myNumber[i + 1]) {
+            myNumber.erase(iterator);
+            deleted_count++;
+            iterator++;
+            i++;
+        }
+        else if (myNumber[i] >= myNumber[i + 1]) {
+            iterator++;
+            i++;
+        }
+    }
+    // converting vector to string
+    std::stringstream ss;
+    for (size_t i = 0; i < myNumber.size(); ++i) {
+        if (i != 0)
+            ss << ",";
+        ss << myNumber[i];
+    }
+    std::string s = ss.str();
+
+    string answer = "";
+    answer = s;
+    return answer;
+}
+int main() {
+    cout << solution("1924", 2);
+    return 0;
+}
