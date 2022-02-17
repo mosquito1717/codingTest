@@ -1,0 +1,59 @@
+//// 순차적인 세 수라고 생각을 했다. 근데 brute-force이다. => 세 카드 합을 모두를 구해줘야 한다. 
+//#include <iostream>
+//#include <vector>
+//#include <algorithm>
+//using namespace std;
+//
+//int main() {
+//    int N, M, answer;
+//    cin >> N >> M;
+//    vector<int> number;
+//    for (int i = 0; i < N; i++) {
+//        int a;
+//        cin >> a;
+//        number.push_back(a);
+//    }
+//    sort(number.begin(), number.end());
+//    for (int i = N - 1; i - 2 >= 0; i--) {
+//        if (number[i] + number[i - 1] + number[i - 2] <= M) {
+//            answer = number[i - 1] + number[i - 2] + number[i - 3];    
+//            cout << answer;
+//
+//        }
+//    }
+//    return 0;
+//}
+
+// 삼중 for문 이용
+#include <iostream>
+using namespace std;
+
+int main() {
+	// goal: 카드 3개의 합 중 M과 가장 가까운 것 - 정답
+	// N: 카드 개수
+	// M: 넘지 않아야 하는 값
+	// sum: 가능한 모든 3개 카드의 합이 다 여기 거침
+	// min: M-sum 중 작은 것으로 계속 갱신됨.
+	int N, M, goal, sum = 0;
+	int min = 300000 - 3;
+	int arr[100];
+	cin >> N >> M;
+	for (int i = 0; i < N; i++) {
+		cin >> arr[i];
+	}
+	for (int i = 0; i < N - 2; i++) {
+		for (int j = i+1; j < N - 1; j++) {
+			for (int k = j+1; k < N; k++) { // k = 2; 이러면 같은 숫자를 두번 더하게 될 수도 있음 - 규칙에 어긋남!
+				sum = arr[i] + arr[j] + arr[k];
+				if (M - sum < min && M - sum >= 0) {
+					min = M - sum;
+					goal = sum;
+				}
+			}
+		}
+	}
+	//goal = sum; // 이러면 마지막 sum이 goal값이 됨..
+
+	cout << goal;
+	return 0;
+}
