@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+
+unsigned long long int resistance = 0;
+
+class Resist {
+private:
+	string color;
+	unsigned long long int value;
+	unsigned long long int multiply;
+public:
+	Resist(string c, int v, int m) : color(c), value(v), multiply(m) {}
+	string getColor() const;
+	int getValue() const;
+	int getMultiply() const;
+	int caculate(int order);
+};
+
+string Resist::getColor() const {return color;}
+int Resist::getValue() const {return value;}
+int Resist::getMultiply() const {return multiply;}
+int Resist::caculate(int order) {
+	if (order == 1) {
+		resistance += 10 * value;
+		cout << resistance << endl;
+	}
+	else if (order == 2) {
+		resistance += value;
+		cout << resistance << endl;
+	}
+	else if (order == 3) {
+		resistance *= multiply;
+	}
+	return resistance;
+}
+
+int main() {
+// making conference
+	Resist black("black", 0, 1);
+	Resist brown("brown", 1, 10);
+	Resist red("red", 2, 100);
+	Resist orange("orange", 3, 1000);
+	Resist yellow("yellow", 4, 10000);
+	Resist green("green", 5, 100000);
+	Resist blue("blue", 6, 1000000);
+	Resist violet("violet", 7, 10000000);
+	Resist grey("grey", 8, 100000000);
+	Resist white("white", 9, 1000000000);
+
+	string color1, color2, color3;
+	cin >> color1;
+	cin >> color2;
+	cin >> color3;
+
+	// color1 처리
+	if (color1 == "black") resistance = black.caculate(1);
+	else if (color1 == "brown") resistance = brown.caculate(1);
+	else if (color1 == "red") resistance = red.caculate(1);
+	else if (color1 == "orange") resistance = orange.caculate(1);
+	else if (color1 == "yellow") resistance = yellow.caculate(1);
+	else if (color1 == "green") resistance = green.caculate(1);
+	else if (color1 == "blue") resistance = blue.caculate(1);
+	else if (color1 == "violet") resistance = violet.caculate(1);
+	else if (color1 == "grey") resistance = grey.caculate(1);
+	else if (color1 == "white") resistance = white.caculate(1);
+	
+	// color2 처리
+	if (color2 == "black") resistance = black.caculate(2);
+	else if (color2 == "brown") resistance = brown.caculate(2);
+	else if (color2 == "red") resistance = red.caculate(2);
+	else if (color2 == "orange") resistance = orange.caculate(2);
+	else if (color2 == "yellow") resistance = yellow.caculate(2);
+	else if (color2 == "green") resistance = green.caculate(2);
+	else if (color2 == "blue") resistance = blue.caculate(2);
+	else if (color2 == "violet") resistance = violet.caculate(2);
+	else if (color2 == "grey") resistance = grey.caculate(2);
+	else if (color2 == "white") resistance = white.caculate(2);
+
+	// color3 처리
+	if (color3 == "black") resistance = black.caculate(3);
+	else if (color3 == "brown") resistance = brown.caculate(3);
+	else if (color3 == "red") resistance = red.caculate(3);
+	else if (color3 == "orange") resistance = orange.caculate(3);
+	else if (color3 == "yellow") resistance = yellow.caculate(3);
+	else if (color3 == "green") resistance = green.caculate(3);
+	else if (color3 == "blue") resistance = blue.caculate(3);
+	else if (color3 == "violet") resistance = violet.caculate(3);
+	else if (color3 == "grey") resistance = grey.caculate(3);
+	else if (color3 == "white") resistance = white.caculate(3);
+
+	cout << resistance;
+	return 0;
+}
