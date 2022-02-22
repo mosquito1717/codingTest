@@ -1,35 +1,38 @@
 #include <iostream>
+#include <typeinfo>
 using namespace std;
 
-unsigned long long int resistance = 0;
+//long int resistance = 0; // long도 4byte => unsigned 해줘야 overflow 해결됨.
+unsigned long long resistance = 0; // long long int는 8byte 사용
 
 class Resist {
 private:
 	string color;
-	unsigned long long int value;
-	unsigned long long int multiply;
+	int value;
+	unsigned long long multiply;
 public:
-	Resist(string c, int v, int m) : color(c), value(v), multiply(m) {}
+	Resist(string c, int v, unsigned long long m=0) : color(c), value(v), multiply(m) {}
 	string getColor() const;
 	int getValue() const;
-	int getMultiply() const;
+	unsigned long long getMultiply() const;
 	int caculate(int order);
 };
 
 string Resist::getColor() const {return color;}
 int Resist::getValue() const {return value;}
-int Resist::getMultiply() const {return multiply;}
+unsigned long long Resist::getMultiply() const {return multiply;}
 int Resist::caculate(int order) {
 	if (order == 1) {
-		resistance += 10 * value;
-		cout << resistance << endl;
+		resistance += 10 * (unsigned long long)value;
+		//cout << resistance << endl;
 	}
 	else if (order == 2) {
 		resistance += value;
-		cout << resistance << endl;
+		//cout << resistance << endl;
 	}
 	else if (order == 3) {
 		resistance *= multiply;
+		cout << resistance;
 	}
 	return resistance;
 }
@@ -88,6 +91,5 @@ int main() {
 	else if (color3 == "grey") resistance = grey.caculate(3);
 	else if (color3 == "white") resistance = white.caculate(3);
 
-	cout << resistance;
 	return 0;
 }
