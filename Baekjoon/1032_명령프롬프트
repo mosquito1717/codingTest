@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+	int fileCount = 0;
+	int fileLength = 0;
+	char* answer = new char[fileLength]; // 정답 동적할당
+	string file1;
+
+	// 입력 받기
+	cin >> fileCount;
+	cin >> file1;
+	
+	fileLength = file1.length();
+
+	// 동적 할당
+	char** fileName = new char*[fileCount];
+	for (int i = 0; i < fileCount; i++) {
+		fileName[i] = new char[fileLength];
+	}
+
+	// 첫번째 파일명을 fileName과 answer 배열에 넣기
+	for (int i = 0; i < fileLength; i++) { // 문자열을 문자 열로 바꾸는 과정인데 이거 간단히 할 수 없을까?
+		fileName[0][i] = file1[i];
+		answer[i] = file1[i];
+	}
+	// 두번째 이후 파일명을 입력받아 fileName 배열에 넣기
+	for (int i = 1; i < fileCount; i++) {
+		cin >> file1;
+		for (int j = 0; j < fileLength; j++) {
+			fileName[i][j] = file1[j];
+		}
+	}
+
+	for (int i = 0; i < fileCount - 1; i++) {
+		for (int j = 0; j < fileLength; j++) {
+			if (fileName[i][j] != fileName[i+1][j]) {
+				answer[j] = '?';
+			}
+		}
+	}
+
+	cout << answer;
+
+	// 동적할당 해제
+	delete answer;
+	for (int i = 0; i < fileCount; i++) {
+		delete fileName[i];
+	}
+	delete fileName;
+
+	return 0;
+}
