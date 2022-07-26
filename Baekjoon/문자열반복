@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string s;
+    int count, iter;
+
+    cin >> count;
+    while(count--){
+        cin >> iter >> s;
+        for(int j=0;j<s.size();j++){
+            for(int i=0;i<iter;i++){
+                cout << s[j];
+            }
+        }
+        cout << endl;
+    }
+}
